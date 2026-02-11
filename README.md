@@ -21,8 +21,6 @@ Register a username and password to test!
   - [Run Locally](#run-locally)
   - [Run with Docker](#run-with-docker)
 - [CI/CD & Deployment](#cicd--deployment)
-- [Project Structure](#project-structure)
-- [Roadmap](#roadmap)
 
 ---
 
@@ -142,3 +140,59 @@ OPENAI_API_KEY=your_openai_api_key
 
 # (Optional) GCP specific
 GCP_PROJECT_ID=your_project_id
+
+
+```
+
+Comment DATABASE_URL, MONGODB_URL and OPENAI_API_KEY and replace with following:
+```
+DATABASE_URL=os.getenv("DATABASE_URL")
+MONGODB_URL=os.getenv("MONGODB_URL")
+OPENAI_API_KEY=os.getenv("OPEN_API_KEY")
+```
+
+## Run Locally
+
+### 1. Clone the repository
+git clone https://github.com/raf945/mna-crm_ai.git
+cd mna-crm_ai
+
+### 2. Create and activate a virtual environment
+python -m venv venv
+source venv/bin/activate   # on Windows: venv\Scripts\activate
+
+### 3. Install dependencies
+pip install -r requirements.txt
+
+### 4. Run the application (example for FastAPI + Uvicorn)
+uvicorn app.main:app --reload
+
+Then visit http://localhost:8000 in your browser.
+
+## Run with Docker
+
+# Build image
+docker build -t mna-crm:latest .
+
+# Run container
+docker run -p 8000:8000 --env-file .env mna-crm:latest
+
+## CI/CD & Deployment
+
+This project is set up to mimic a production CI/CD flow:
+
+    1. Development in VS Code
+
+    2. Commit & push code changes to GitHub
+
+    3. Docker image build
+
+        - A Dockerfile defines how the app is containerised
+
+        - (Optional) GitHub Actions workflow builds and pushes the image to a container registry
+
+    4. Deployment to Google Cloud Run
+
+        - New container image is deployed to Cloud Run
+
+        - Service is exposed over HTTPS with autoscaling
