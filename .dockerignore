@@ -1,7 +1,7 @@
-.venv
+.git
+.gitignore
 __pycache__
 *.pyc
-.git
+.venv
 .env
-node_modules
-.DS_Store
+README.md
