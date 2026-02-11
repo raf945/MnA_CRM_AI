@@ -1,0 +1,11 @@
+fastapi
+uvicorn[standard]
+sqlalchemy
+psycopg2-binary
+pymongo
+argon2-cffi
+openai==2.16.0
+python-multipart
+jinja2
+google-cloud-secret-manager
+python-dotenv

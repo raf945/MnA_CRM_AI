@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="/frontend/styles/registerStyles.css">
+    <title>Log in page</title>
+</head>
+
+<body>
+    <h1>Register</h1>
+    <p>Enter a user name and password to register</p>
+
+    {% if error %}
+    <p style="color: red;">{{ error }}</p>
+    {% endif %}
+
+    <div class="container">
+        <form action="/register" method="post">
+            <label for="user_name"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="user_name" required>
+
+            <label for="password"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="password" required>
+
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="/frontend/styles/loginStyles.css">
+    <title>Log in page</title>
+    
+</head>
+<body>
+    <h1>Log in Page</h1>
+
+    <div class="container">
+        <form action="/login" method="post">
+            <label for="user_name"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="user_name" required>
+
+            <label for="password"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="password" required>
+
+            <button type="submit">Login</button>
+        </form>
+    </div>
+    <div class="register-page">
+    <a href="/register">
+        <button type="button">Register</button>
+    </a>
+</div>
+
+</body>
+
+</html>

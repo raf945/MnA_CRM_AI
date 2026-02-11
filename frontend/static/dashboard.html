@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+
+<head>
+  <link rel="stylesheet" href="/frontend/styles/dashboardStyles.css">
+  <link rel="stylesheet" href="/frontend/styles/chatbotStyles.css">
+</head>
+
+<body>
+  <div class="page">
+    <div>
+      <header class="header">
+        <h1>M&A Deal CRM</h1>
+        <div class="lead-account-btn">
+          <div class="add-lead-wrapper">
+            <button class="lead btn-primary" id="add-lead-btn">+ Add lead</button>
+
+            <div class="modal" id="add-lead-modal" hidden>
+              <div class="modal-header">
+                <strong>Add Lead</strong>
+
+              </div>
+
+              <div class="modal-body">
+                <div>
+                  <label for="im-number-input">IM</label>
+                  <input class="lead-field" id="im-number-input">
+                </div>
+                <div>
+                  <label for="company-name-input">Company Name</label>
+                  <input class="lead-field" id="company-name-input">
+                </div>
+                <div>
+                  <label for="agent-name-input">Agent Name</label>
+                  <input class="lead-field" id="agent-name-input">
+                </div>
+                <div>
+                  <label for="email-input">Email</label>
+                  <input class="lead-field" id="email-input">
+                </div>
+                <div>
+                  <label for="task-input">Task</label>
+                  <select class="lead-field" id="task-input">
+                    <option value="contact">Contact</option>
+                    <option value="follow_up">Follow up</option>
+                    <option value="reply">Reply</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="date-input">Action Date</label>
+                  <input class="lead-field" id="date-input" type="date" />
+                </div>
+              </div>
+              <div class="modal-footer">
+                <div class="modal-actions">
+                  <button type="button" id="cancel-lead-modal">Cancel</button>
+                  <button type="button" class="primary" id="modal-save-button">Save</button>
+                </div>
+                <div style="color: red;" id="email-error-position" hidden>Email format incorrect</div>
+                <div>
+                  <label id="save-error-btn" style="color: red; " hidden>Empty field</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="account-wrapper">
+            <button class="account btn-primary" id="check-account-btn">My Account</button>
+
+            <div class="account-menu" id="account-menu" hidden>
+              <div class="account-menu-header">
+                <strong>My Account</strong>
+                <button class="menu-close" type="button" id="close-account-menu">×</button>
+              </div>
+
+              <div class="account-menu-body">
+                <button id="sign-out-btn" type="button" class="menu-item">Sign out</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+    </div>
+    <div class="page-main">
+      <aside class="sidebar">
+        <div id="dashboard-button-bar" class="sidebar-item sidebar-item--active">
+          <span class="sidebar-icon"></span>
+          <span>Dashboard</span>
+        </div>
+        <div id="lead-button-bar" class="sidebar-item">
+          <span class="sidebar-icon"></span>
+          <span id="lead-button">Leads</span>
+        </div>
+        <div id="activity-button-bar" class="sidebar-item">
+          <span class="sidebar-icon"></span>
+          <span>Activity Log</span>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <h1>Dashboard</h1>
+        <section class="metrics-row">
+          <div class="metric-box tasks-overdue">
+            <div class="metric-label">Tasks Overdue</div>
+            <div class="metric-value" id="tasks-overdue-count">0</div>
+          </div>
+          <div class="tasks-due-today metric-box">
+            <div class="metric-label">Tasks Due Today</div>
+            <div class="metric-value" id="tasks-due-count">0</div>
+          </div>
+          <div class="open-leads metric-box">
+            <div class="metric-label">Open Leads</div>
+            <div class="metric-value" id="open-leads-count">0</div>
+          </div>
+        </section>
+        <section id="dashboard-id" class="page-dashboard">
+          <h2>Today's Tasks</h2>
+          <div class="lead-task">
+            <table class="leads-table">
+              <thead>
+                <tr>
+                  <th>IM</th>
+                  <th>Company</th>
+                  <th>Agent</th>
+                  <th>Email</th>
+                  <th>Task</th>
+                  <th>Action Date</th>
+                  <th>Stage</th>
+
+                </tr>
+              </thead>
+              <tbody id="leads-tbody"></tbody>
+            </table>
+          </div>
+        </section>
+        <section id="leads-id" class="page-leads" hidden>
+          <h2>Leads</h2>
+          <div class="lead-task">
+            <table class="leads-table">
+              <thead>
+                <tr>
+                  <th>IM</th>
+                  <th>Company</th>
+                  <th>Agent</th>
+                  <th>Email</th>
+                  <th>Task</th>
+                  <th>Action Date</th>
+                  <th>Stage</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="leads-page-tbody"></tbody>
+            </table>
+          </div>
+        </section>
+        <section id="tasks-id" class="page-tasks" hidden>
+          <h2>Tasks</h2>
+        </section>
+        <section id="activity-id" class="page-activity-log" hidden>
+          <h2>Activity</h2>
+          <div class="activity-log-div">
+            <table class="activity-table">
+              <thead>
+                <tr>
+                  <th style="width: 90px;">Time</th>
+                  <th style="width: 90px;">date</th>
+                  <th stlye>Action</th>
+                </tr>
+              </thead>
+              <tbody id="activity-page-tbody"></tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+      <div class="right-panel">
+       <section class="chatbot">
+        <div class="chat-header">Email Drafter</div>
+        <div class="chat-messages" id="messages"></div>
+        <div class="chat-input">
+          <input type="text" id="input" placeholder="Type a message..." />
+          <button id="chatbot-button">Send</button>
+          
+        </div>
+      </section>
+      </div> 
+    </div>
+  </div>
+  <dialog id="reschedule-dialog">
+    <h2>Reschedule Lead</h2>
+    <form id="reschedule-form">
+      <label>
+        New Date:
+        <input type="date" id="reschedule-date-input" required />
+      </label>
+      <div>
+        <button type="submit">Save</button>
+        <button type="button" id="cancel-reschedule">Cancel</button>
+      </div>
+    </form>
+  </dialog>
+
+</body>
+<script src="/frontend/javascript/activity.js"></script>
+<script src="/frontend/javascript/leads.js"></script>
+<script src="/frontend/javascript/dashboard.js"></script>
+<script src="/frontend/javascript/chatbot.js"></script>
