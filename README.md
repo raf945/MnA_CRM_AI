@@ -4,7 +4,7 @@ A full‑stack **Mergers & Acquisitions CRM** for managing deal pipelines, organ
 
 Built as a teaching project to practise **production‑style architecture**, **CI/CD**, **containerisation**, and **LLM integration**.
 
-Demo available at: https://mna-crm-ai-610840296940.europe-west1.run.app/login
+Demo available at: [MnA-CRM-AI](https://mna-crm-ai-610840296940.europe-west1.run.app/login)
 Register a username and password to test!
 
 ---
