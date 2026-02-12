@@ -181,6 +181,9 @@ docker run -p 8000:8000 --env-file .env mna-crm:latest
 
 This project is set up to mimic a production CI/CD flow:
 
+![System Architecture Diagram](https://github.com/raf945/MnA_CRM_AI/raw/main/images/mna_crm_cicd.png)
+
+
     1. Development in VS Code
 
     2. Commit & push code changes to GitHub
